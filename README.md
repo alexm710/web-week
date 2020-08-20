@@ -29,6 +29,7 @@ XHTML is STRICT HTML built to XML standards
 </html>
 ```
 
+```
 HTML
     DOCTYPE  ==> HTML5
     HEAD
@@ -72,7 +73,7 @@ HTML
   - Model - DATA LAYER ==>  SQL TABLE MAPPED TO CLASSES
   - View - FINAL DATA WHICH USER SEES
   - Controller - HANDLES REQUEST, FETCHES DATA, SENDS EVERYTHING TO VIEW 
-
+```
 ## HTML
 
 ## CSS
