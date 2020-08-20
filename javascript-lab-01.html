@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creating Elements</title>
+
+    <style>
+        div.myCanvasCircle:hover {
+            border: 1px solid crimson;
+            background-color: rgb(red, green, blue);
+        }
+
+        .myCanvasCircle {
+            width: 200px;
+            margin-top:15px;
+        }
+
+        div.myCanvasRectangle:hover {
+            border: 3px solid blue;
+            background-color:green;
+        }
+        .myCanvasRectangle {
+            width: 200px;
+            margin-top: 15px;
+        }
+
+        .jsAnimation:hover {
+            width: 150px;
+            height: 150px;
+            color:cornflowerblue;
+            border-color:darkgoldenrod;
+            border-style: ridge;
+            padding: 15px;
+        }
+
+    </style>
+
+</head>
+
+
+
+<body>
+
+    <div class="content">
+        <h1> Double click remove!</h1>
+        <button onclick="addDiv()"> Click here! </button>
+        <button ondblclick="removeDiv()"> Remove </button>
+    </div>
+    <div class="contentOne" id="content">
+        <h1>Div to remove the element. </h1>
+    </div>
+
+    <!-- Animation Javascript -->
+    <div class = "jsAnimation" id="javascript-extendable">
+        <h1> I am an animation! </h1>
+    </div>
+
+    <div>
+        <h1> Arrays </h1>
+        <p id="arrays"></p>
+
+        <input type="text" id="myNumber" value="Some numbers..">
+        <p>Click to add the numbers into an array.</p>
+        <button onclick="addNumber()">Add Number</button>
+        <button onclick="removeFirstNumber()">Remove First Number</button>
+        <button onclick="removeLastNumber()">Remove Last Number</button>
+        <button onclick="removeSelectedNumber()">Remove Selected Number</button>
+
+
+
+
+    </div>
+    <div class="myCanvasCircle">
+        <canvas id="myCanvasCircle" width="200" height="100" style="border:1px solid #d3d3d3;"
+            onclick="clickOnCircle()">
+            Your browser does not support the HTML canvas tag.</canvas>
+    </div>
+
+    <div class="myCanvasRectangle">
+        <canvas id="myCanvasRectangle" width="200" height="100" style="border:1px solid #000000;"
+        onclick="clickOnRectangle()">
+            Your browser does not support the HTML canvas tag.
+        </canvas>
+    </div>
+
+    <script>
+        /*
+        Create a web page which can add and remove given elements from the DOM,
+        for example.
+        
+        - DIV
+            Click to add a new DIV
+            Double click (on the div) or perhaps a button to remove an existing DIV after
+            checking 'are you sure?'
+            - random colour
+        */
+        // creating a new div and set its attributes
+        function addDiv() {
+            console.log("Double click remove!")
+            let div = document.createElement('div');
+            div.id = 'content';
+            div.class = 'note';
+            div.onclick = "removeDiv()";
+
+            // creating a new text node and adding it to the div
+            let text = document.createTextNode('Hello I am a new Div');
+            div.appendChild(text);
+
+            // adding div to the document
+            document.body.appendChild(div);
+
+        }
+
+        // remove div
+        function removeDiv() {
+            console.log("hello world!")
+            var removeDiv = document.getElementById("content");
+            input_box = confirm("Click OK to continue.");
+            if (input_box == true) {
+                alert("You successfully deleted div.")
+                removeDiv.remove();
+            }
+            else {
+                alert("You didn't remove the div.")
+            }
+        }
+
+        // Lab 02 - Animation effects
+
+        document.getElementById('javascript-extendable')
+            .addEventListener('mouseover', function () {
+                // set width directly
+                document.getElementById('javascript-extendable').style.width = '20vmin';
+            })
+        document.getElementById('javascript-extendable')
+            .addEventListener('mouseout', function () {
+                // set width directly
+                document.getElementById('javascript-extendable')
+                    .setAttribute('style', 'width:10vmin;')
+            })
+
+        // Lab 03 Array  Create an array of numbers and display them on the screen
+        /* Have an input box and have the user input a number and either add the new number to the start or end of the array.
+        Re-display the array to show the new number being entered.  (Remove the old array)  */
+
+        var numbers = [1, 2, 3, 5, 10];
+        document.getElementById("arrays").innerHTML = numbers;
+
+        // Input form
+        function addNumber() {
+            var x = document.getElementById("myNumber").value;
+            console.log(x);
+            numbers.push(x);
+            document.getElementById("arrays").innerHTML = numbers;
+        }
+        // Remove first number btn
+        function removeLastNumber() {
+            numbers.pop();
+            document.getElementById("arrays").innerHTML = numbers;
+        }
+
+        // Remove last number btn
+        function removeFirstNumber() {
+            numbers.shift();
+            document.getElementById("arrays").innerHTML = numbers;
+        }
+        // Remove Selected Number btn
+        function removeSelectedNumber() {
+            var x = document.getElementById("myNumber").value;
+            for (let i = 0; i < numbers.length; i++){
+                if (numbers[i] == x) {
+                    numbers.splice(i, x)
+                    document.getElementById("arrays").innerHTML = numbers;
+                }
+            }
+        }
+
+        // Lab 04 -- Make Shapes using Canvas. Create a circle and a rectangle and make them clickable
+
+        // making a circle
+        var c = document.getElementById("myCanvasCircle");
+        var ctx = c.getContext("2d");
+        ctx.beginPath();
+        ctx.arc(95, 50, 40, 0, 2 * Math.PI);
+        ctx.stroke();
+
+        function clickOnCircle() {
+            console.log("hello");
+            alert("you clicked on the circle!")
+            // document.getElementById("myCanvas");
+        }
+
+        // making a rectangle
+        function clickOnRectangle() {
+            console.log("hello");
+            alert("you clicked on the rectangle!")
+            // document.getElementById("myCanvas");
+        }
+
+
+    </script>
+</body>
+
+</html>
