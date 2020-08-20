@@ -42,7 +42,7 @@ HTML
             /* CSS GOES HERE */
         </style>
     BODY
-        TAGS  <h1>
+        TAGS  
         ATTRIBUTES and VALUE  <img src="..."  width="400">  <a href="...">
 
 - CSS
